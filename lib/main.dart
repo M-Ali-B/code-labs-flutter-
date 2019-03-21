@@ -24,13 +24,20 @@ Widget build(BuildContext context){
  // final wordPair = new WordPair.random();
   final List<WordPair> _suggestions = <WordPair>[];
   final TextStyle _biggerFont = const TextStyle(fontSize: 18.0,fontFamily: "Hind");
-  
+  final Set<WordPair> _saved = new Set<WordPair>();
 Widget _buildRow(WordPair pair) {                    // function 
+   final bool alreadySaved =_saved.contains(pair);
+  
     return new ListTile(         // simply creates a list style
       title: new Text(
         pair.asPascalCase,
         style: _biggerFont,
       ),
+       trailing: new Icon(
+         alreadySaved ? Icons.favorite: Icons.favorite_border,
+         color: alreadySaved ? Colors.red : null,
+       ),
+
     );
   }
  Widget _buildSuggestions() {                         // function
